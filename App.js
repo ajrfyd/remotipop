@@ -1,19 +1,14 @@
 import React from 'react';
-import { View, Text, StatusBar, StyleSheet } from 'react-native';
-
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import Stacks from './components/Stacks';
 
 const App = () => {
   return (
-    <View>
-      <Text>
-        Emotipop Refactoring!
-      </Text>
-    </View>
+    <NavigationContainer>
+      <Stacks />
+    </NavigationContainer>
   )
 }
 
-const styles = StyleSheet.create({
-  main: {
-    
-  }
-})
+export default App;
