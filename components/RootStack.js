@@ -1,8 +1,9 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import TutorialHome from './Tutorials/TutorialHome';
+import TutorialHome from './Tutorials/TutorialPage';
 import MainTab from './Mains/MainTab';
 import { useSelector } from 'react-redux';
+import TutorialStack from './Tutorials/TutorialStack';
 
 const Stack = createNativeStackNavigator()
 
@@ -10,7 +11,11 @@ const RootStack = () => {
   const user = useSelector(user => user.user.signIn);
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+    >
       {
         user.isSignIn ? (
           <Stack.Screen 
@@ -22,8 +27,8 @@ const RootStack = () => {
           />
         ) : (
           <Stack.Screen 
-            name='TutorialHome'
-            component={TutorialHome}
+            name='TutorialStack'
+            component={TutorialStack}
           />
         )
       }
