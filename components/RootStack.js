@@ -4,6 +4,7 @@ import TutorialHome from './Tutorials/TutorialPage';
 import MainTab from './Mains/MainTab';
 import { useSelector } from 'react-redux';
 import TutorialStack from './Tutorials/TutorialStack';
+import SignInScreen from './SignIn/SignInScreen';
 
 const Stack = createNativeStackNavigator()
 
@@ -26,12 +27,19 @@ const RootStack = () => {
             }}
           />
         ) : (
-          <Stack.Screen 
-            name='TutorialStack'
-            component={TutorialStack}
-          />
+          <>
+            <Stack.Screen 
+              name='TutorialStack'
+              component={TutorialStack}
+            />
+            <Stack.Screen 
+              name='SignIn'
+              component={SignInScreen}
+            />
+          </>
         )
       }
+      
     </Stack.Navigator>
   )
 }

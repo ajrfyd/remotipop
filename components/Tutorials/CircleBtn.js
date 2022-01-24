@@ -1,15 +1,20 @@
 import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { useDispatch } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
-const CircleBtn = ({ }) => {
+const CircleBtn = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
       <Pressable 
         style={styles.btn}
-        onPress={() => dispatch({ type: 'pages/BTN_ONE'})}
+        onPress={() => {
+          dispatch({ type: 'pages/BTN_ONE'})
+          navigation.navigate('Tutorial1')
+        }}
       />
       <Pressable 
         style={styles.btn}
