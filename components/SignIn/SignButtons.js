@@ -3,18 +3,24 @@ import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import CustomButton from './CustomButton';
 
-const SignButtons = ({ isSignUp, onSubmit, loading }) => {
+const SignButtons = ({ isSignUp, onSubmit, loading, setIsSignUp, setForm }) => {
   const navigation = useNavigation();
 
   const primaryTitle = isSignUp ? '회원가입' : '로그인';
   const secondaryTitle = isSignUp ? '로그인' : '회원가입';
 
   const onSecondaryButtonPress = () => {
-    if(isSignUp) {
-      navigation.goBack();
-    } else {
-      navigation.push('SignIn', { isSignUp: true })
-    }
+    setIsSignUp(!isSignUp)
+    setForm({
+      email: '',
+      password: '',
+      confirmPassword: ''
+    })
+    // if(!isSignUp) {
+    //   navigation.goBack();
+    // } else {
+    //   // navigation.push('SignIn', { isSignUp: true })
+    // }
   }
 
   if(loading) {

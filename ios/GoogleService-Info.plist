@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>522602320435-f6jqojq83kh2ub1b01ciban7i7o3uj13.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.522602320435-f6jqojq83kh2ub1b01ciban7i7o3uj13</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>522602320435-a3gg2engg50h11veto53c7jhs8qt7e53.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBEiWMPJlFObkAJCSfc7VHemGhcvDtwEaI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>522602320435</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.remotipop</string>
+	<key>PROJECT_ID</key>
+	<string>remotipop</string>
+	<key>STORAGE_BUCKET</key>
+	<string>remotipop.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:522602320435:ios:9decc95dd38f0a82080946</string>
+</dict>
+</plist>

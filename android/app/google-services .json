@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "522602320435",
+    "project_id": "remotipop",
+    "storage_bucket": "remotipop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522602320435:android:43cd1b22fb015a16080946",
+        "android_client_info": {
+          "package_name": "com.remotipop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522602320435-a3gg2engg50h11veto53c7jhs8qt7e53.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.remotipop",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "522602320435-iv09bhr605esjvs34ebigevmmk21n1sc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO-kai8_zcEJnRTKMoQf7oVLssP_NxDIg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522602320435-iv09bhr605esjvs34ebigevmmk21n1sc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

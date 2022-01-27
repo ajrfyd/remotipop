@@ -1,13 +1,16 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ImageBackground } from 'react-native';
 
 const MainPageStack = () => {
   return (
-    <View>
+    <ImageBackground
+      source={require('../../assets/background.jpeg')}
+      style={{ height: '100%' }}
+    >
       <Text>
         This is Main Page!!!
       </Text>
-    </View>
+    </ImageBackground>
   )
 }
 

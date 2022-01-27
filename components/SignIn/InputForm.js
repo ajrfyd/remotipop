@@ -7,6 +7,7 @@ const InputForm = ({ hasMarginBottom, ...val }, ref) => {
       style={[styles.input, hasMarginBottom && styles.margin]}
       {...val}
       ref={ref}
+      placeholderTextColor={'black'}
     />
   )
 }
@@ -14,11 +15,12 @@ const InputForm = ({ hasMarginBottom, ...val }, ref) => {
 const styles = StyleSheet.create({
   input: {
     borderColor: '#dbdbdb',
-    borderWidth: 1,
+    borderBottomWidth: 1,
     paddingHorizontal: 16,
-    borderRadius: 4,
+    borderBottomColor: 'black',
+    // borderRadius: 4,
     height: 48,
-    backgroundColor: '#fff'
+    // backgroundColor: '#fff'
   },
   margin: {
     marginBottom: 16

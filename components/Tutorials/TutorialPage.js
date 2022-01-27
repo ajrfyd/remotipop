@@ -13,9 +13,9 @@ import SignInScreen from '../SignIn/SignInScreen';
 
 const TutorialPage = () => {
   const { width } = useWindowDimensions();
-  const { pages } = useSelector(state => state.btnPage);
+  // const { pages } = useSelector(state => state.btnPage);
   // const [pageInfo, setPageInfo] = useState(pages)
-  console.log(pages)
+  // console.log(pages)
 
 
   return (
