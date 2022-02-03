@@ -41,38 +41,9 @@ const SignInScreen = ({ width, navigation, route }) => {
     const info = { email, password };
     setLoading(true);
     dispatch(signIn(info))
-    // try{
-    //   const { data } = await axios.post(
-    //     'http://ec2-13-209-98-187.ap-northeast-2.compute.amazonaws.com:8080/users/signin', 
-    //     info,
-    //     { 
-    //       headers: {
-    //         'Content-Type': 'application/json'
-    //       },
-    //       withCredentials: true
-    //     }
-    //     )
-    //     console.log(data.userinfo.email)
-    //     if(data.userinfo) setLoading(false)
-    //     return
-    // } catch(e) {
-    //   console.log(e)
-    // }
-    
-
-    // try {
-    //   const { user } = isSignUp ? await signUp(info) : await signInF(info);
-    //   console.log(user);
-    // } catch(e) {
-    //   Alert.alert('실패');
-    //   console.log(e);
-    // } finally {
-    //   setLoading(false);
-    // }
     setLoading(false)
   }
 
-  // console.log(user);
 
   return (
     <KeyboardAvoidingView 

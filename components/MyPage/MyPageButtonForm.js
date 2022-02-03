@@ -3,7 +3,6 @@ import { StyleSheet, View } from 'react-native';
 import CustomButton from '../SignIn/CustomButton';
 
 const MyPageButtonForm = ({ onPress, onSubmit }) => {
- 
 
   return (
     <View style={styles.container}>

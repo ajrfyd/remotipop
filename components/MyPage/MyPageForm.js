@@ -8,13 +8,11 @@ const MyPageForm = ({ user, onChangeTextHandler }) => {
   const { userName } = user;
 
   return (
-    <TouchableWithoutFeedback onPress={() => {
-      Keyboard.dismiss();
-    }}>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View>
         <InputForm 
           hasMarginBottom
-          placeholder={ userName ? '여기를 눌러 닉네임을 변경할 수 있어요!' : '닉네임을 설정해 주세요'}
+          placeholder={ userName ? `여기를 눌러 닉네임을 변경할 수 있어요!` : '닉네임을 설정해 주세요'}
           autoCapitalize='none'
           autoCorrect={false}
           onChangeText={onChangeTextHandler('userName')}

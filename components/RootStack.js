@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TutorialHome from './Tutorials/TutorialPage';
 import MainTab from './Mains/MainTab';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import TutorialStack from './Tutorials/TutorialStack';
 import SignInScreen from './SignIn/SignInScreen';
+import AsyncStorage from '@react-native-community/async-storage';
+import { signInAgain } from '../modules/user';
 
 const Stack = createNativeStackNavigator()
 
 const RootStack = () => {
   const user = useSelector(user => user.user.signIn);
-  console.log(user)
+  const dispatch = useDispatch();
+  // const [token, setToken] = useState(null);
+
+  const getToken = async () => {
+    const token = await AsyncStorage.getItem('accessToken');
+    if(token) {
+      dispatch(signInAgain(token))
+    }
+  }
+
   
+  useEffect(() => {
+    getToken()
+  }, [])
+
+  // console.log(token, 'this is rootStack area')
+
   return (
     <Stack.Navigator
       screenOptions={{
