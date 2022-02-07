@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   View, Text, SafeAreaView, ImageBackground, Platform, 
-  KeyboardAvoidingView, StyleSheet, Keyboard, TouchableWithoutFeedback, Alert
+  KeyboardAvoidingView, StyleSheet, Keyboard, TouchableWithoutFeedback, Alert, useWindowDimensions
 } from 'react-native';
 import MyPageForm from './MyPageForm';
 import MyPageButtonForm from './MyPageButtonForm';
@@ -20,33 +20,18 @@ const MypageContainer = () => {
     confirmPassword: ''
   })
   
+  const dimensions = useWindowDimensions();
+  const { width, height } = dimensions;
   
-  // console.log(userInfo, 'this is myPage')
-  // useEffect(() => {
-  //   setUser({
-  //     ...user,
-  //     email,
-  //     userName: username
-  //   })
-  // }, [username, email])
-  // console.log(userInfo, 'adasdasdasdasq')
-  // const [ user, setUser ] = useState({
-  //     email: '',
-  //     userName: '',
-  //     password: '',
-  //     confirmPassword: ''
-  //   })
   const dispatch = useDispatch();
-  // console.log(username, email)
   
-  // console.log(user)
   const signOutHandler = () => {
     dispatch(signOut())
   }
   console.log(user)
   const onSubmit = () => {
     Keyboard.dismiss();
-    // const { email, userName, password, confirmPassword } = user;
+
     if(user.email === userInfo.email && user.userName === userInfo.username && user.password === '' && user.confirmPassword === ''){
       Alert.alert('아무 정보도 수정되지 않았습니다.')
       return
@@ -64,13 +49,7 @@ const MypageContainer = () => {
         Alert.alert('성공적으로 변경되었습니다!')
       }
     })
-    // reqChangeInfo(user).then(result => {
-    //   console.log(result.data)
-    //   if(result.status === 200) {
-    //     Alert.alert('성공적으로 변경 되었습니다!')
-    //   }
-    //   return;
-    // })
+
   }
 
   const onChangeTextHandler = name => value => {
@@ -82,35 +61,39 @@ const MypageContainer = () => {
 
 
   return (
-    <ImageBackground
-      source={require('../../assets/background.jpeg')}
-      style={{ height: '100%' }}
+    <TouchableWithoutFeedback
+      onPress={() => Keyboard.dismiss()}
     >
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={ Platform.select({ ios: 'padding' })}
+      <ImageBackground
+        source={require('../../assets/background.jpeg')}
+        style={{ height, width }}
       >
-        <SafeAreaView
-          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior={ Platform.select({ ios: 'padding' })}
         >
-          <View>
-            <Text style={styles.title}>
-              Welcome {username || null}!!
-            </Text>
-          </View>
-          <View style={styles.form}>
-            <MyPageForm 
-              user={user}
-              onChangeTextHandler={onChangeTextHandler}
-            />
-            <MyPageButtonForm 
-              onPress={signOutHandler}
-              onSubmit={onSubmit}
-            />
-          </View>
-        </SafeAreaView>
-      </KeyboardAvoidingView>
-    </ImageBackground>
+          <SafeAreaView
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+          >
+            <View>
+              <Text style={styles.title}>
+                Welcome {username || null}!!
+              </Text>
+            </View>
+            <View style={styles.form}>
+              <MyPageForm 
+                user={user}
+                onChangeTextHandler={onChangeTextHandler}
+              />
+              <MyPageButtonForm 
+                onPress={signOutHandler}
+                onSubmit={onSubmit}
+              />
+            </View>
+          </SafeAreaView>
+        </KeyboardAvoidingView>
+      </ImageBackground>
+    </TouchableWithoutFeedback>
   )
 }
 

@@ -2,7 +2,8 @@ import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
 // Action type
 
-const URL = 'http://ec2-13-209-98-187.ap-northeast-2.compute.amazonaws.com:8080/'
+// const URL = 'http://ec2-13-209-98-187.ap-northeast-2.compute.amazonaws.com:8080/'
+const URL = 'http://10.0.2.2:3000/'
 
 const SIGN_IN = 'user/SIGN_IN';
 const SIGN_IN_SUCCESS = 'user/SIGN_IN_SUCCESS';
@@ -55,6 +56,10 @@ export const signIn = userInfo => async dispatch => {
   }
 };
 
+export const signUp = async (userInfo) => dispatch => {
+  
+}
+
 export const signOut = () => async dispatch => {
   try {
     await AsyncStorage.removeItem('accessToken');
@@ -79,7 +84,7 @@ export const signInAgain = token => async dispatch => {
       }
       )
       if(data.message !== 'get your information completed') {
-        console.log('asdasddaawaas')
+        console.log('asdasddaawaas-12459012-5891279057120954')
         return;
       }
       

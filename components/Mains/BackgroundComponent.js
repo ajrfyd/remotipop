@@ -1,7 +1,7 @@
 import React from 'react';
 import { ImageBackground } from 'react-native';
 
-const Test = ({ children }) => {
+const BackgroundComponent = ({ children }) => {
   console.log(children)
   return (
     <ImageBackground
@@ -15,4 +15,4 @@ const Test = ({ children }) => {
   )
 }
 
-export default Test;
+export default BackgroundComponent;

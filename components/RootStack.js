@@ -17,6 +17,7 @@ const RootStack = () => {
 
   const getToken = async () => {
     const token = await AsyncStorage.getItem('accessToken');
+    console.log(token)
     if(token) {
       dispatch(signInAgain(token))
     }

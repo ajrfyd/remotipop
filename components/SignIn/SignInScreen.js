@@ -22,7 +22,6 @@ const SignInScreen = ({ width, navigation, route }) => {
   // const user = useSelector(state => state.user.signIn);
   const dispatch = useDispatch();
 
-  // console.log(isSignUp)
   const onChangeTextHandler = name => value => {
     setForm({
       ...form,
@@ -32,16 +31,20 @@ const SignInScreen = ({ width, navigation, route }) => {
 
   const onSubmit = async() => {
     Keyboard.dismiss();
-    const { email, password, confirmPassword } = form;
-    if(isSignUp && password !== confirmPassword) {
-      Alert.alert('비밀번호가 일치하지 않습니다!')
-      return;
-    }
+    if(isSignUp) {
 
-    const info = { email, password };
-    setLoading(true);
-    dispatch(signIn(info))
-    setLoading(false)
+    } else {
+      const { email, password, confirmPassword } = form;
+      if(isSignUp && password !== confirmPassword) {
+        Alert.alert('비밀번호가 일치하지 않습니다!')
+        return;
+      }
+  
+      const info = { email, password };
+      setLoading(true);
+      dispatch(signIn(info))
+      setLoading(false)
+    }
   }
 
 

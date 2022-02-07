@@ -162,7 +162,8 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   text: {
-    color: '#6200ee'
+    color: '#6200ee',
+    fontSize: 18
   }
 })
 
