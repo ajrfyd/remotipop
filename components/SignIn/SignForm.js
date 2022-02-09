@@ -5,6 +5,7 @@ import InputForm from './InputForm';
 const SignForm = ({ form, onChangeTextHandler, onSubmit, isSignUp }) => {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
+  const usernameRef = useRef();
 
   // console.log(form)
   return (
@@ -18,8 +19,29 @@ const SignForm = ({ form, onChangeTextHandler, onSubmit, isSignUp }) => {
         keyboardType='email-address'
         returnKeyType='next'
         onChangeText={onChangeTextHandler('email')}
-        onSubmitEditing={() => passwordRef.current.focus()}
+        onSubmitEditing={() => {
+          if(isSignUp) {
+            usernameRef.current.focus()
+          } else{
+            passwordRef.current.focus()
+          }
+        }}
       />
+      {
+        isSignUp && (
+          <InputForm
+            hasMarginBottom
+            placeholder='username or nickname'
+            value={form.username}
+            autoCapitalize='none'
+            autoCorrect={false}
+            returnKeyType='next'
+            onChangeText={onChangeTextHandler('username')}
+            ref={usernameRef}
+            onSubmitEditing={() => passwordRef.current.focus()}
+          />
+        )
+      }
       <InputForm 
         placeholder='Password'
         value={form.password}
@@ -46,7 +68,8 @@ const SignForm = ({ form, onChangeTextHandler, onSubmit, isSignUp }) => {
             secureTextEntry
             ref={confirmPasswordRef}
             onSubmtEditing={onSubmit}
-            returnKeyType='done'
+            // onSubmit={() => onSubmit()}
+            // returnKeyType='next'
           />
         )
       }

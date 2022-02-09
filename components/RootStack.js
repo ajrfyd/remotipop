@@ -17,7 +17,8 @@ const RootStack = () => {
 
   const getToken = async () => {
     const token = await AsyncStorage.getItem('accessToken');
-    console.log(token)
+    // console.log(token)
+    // setToken(token)
     if(token) {
       dispatch(signInAgain(token))
     }
@@ -37,7 +38,7 @@ const RootStack = () => {
       }}
     >
       {
-        user.isSignIn ? (
+        user.isSign ? (
           <Stack.Screen 
             name='MainTab'
             component={MainTab}

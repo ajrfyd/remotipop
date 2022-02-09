@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { 
   View, StyleSheet, Text, Modal, Pressable, ImageBackground, 
   ScrollView, TextInput, KeyboardAvoidingView, Platform,
-  useWindowDimensions
+  useWindowDimensions, Keyboard, Alert
 } from 'react-native';
 import CustomButton from '../SignIn/CustomButton';
+import { useDispatch } from 'react-redux'
+import { registerBean } from '../../modules/beans';
 
 const ModalContainer = ({ modal, setModal, emotion }) => {
+  const dispatch = useDispatch();
   const emotions = [
     ['슬픔', '우울', '걱정', '분노', '실망'],
     ['기쁨', '행복', '만족', '뿌듯', '설렘'],
@@ -14,14 +17,58 @@ const ModalContainer = ({ modal, setModal, emotion }) => {
   const RED = '../../assets/redNo.png';
   const BLUE = '../../assets/blueNo.png';
 
+  const [emotionState, setEmotionState] = useState({
+    emotions: emotions[emotion][0],
+    emotion_level: 0,
+    contents: '',
+    gourdkinds: emotion === 1 ? true : false
+  })
+
+  const [emotionStyle, setEmotionStyle] = useState({
+    emotion: 0,
+    level: 0
+  })
+
   const emotionLevel = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   // const [keyboard, setKeyboard] = useState(false);
   // modal size 
   const dimensions = useWindowDimensions();
   const { height } = dimensions;
 
-  const onSubmit = () => {
+  const stateChangeHandler = name => value => {
+    setEmotionState({
+      ...emotionState,
+      [name]: value
+    })
+  }
 
+  const onSubmit = () => {
+    Keyboard.dismiss()
+    const { contents } = emotionState;
+    if(!contents) {
+      Alert.alert('알림', '오늘의 감정을 기록해 주세요!')
+      return;
+    } else {
+      Alert.alert(
+        '이렇게 작성하시겠습니까??',
+        `
+        오늘의 감정 : ${emotionState.emotions}
+        감정의 레벨 : ${emotionState.emotion_level}
+        내용 : ${emotionState.contents}
+        `,
+        [
+          { text: '취소', style: 'cancel', onPress: () => { return } },
+          {
+            text: '전송', 
+            onPress: () => {
+              dispatch(registerBean(emotionState))
+            },
+            style: 'default'
+          }
+        ]
+      )
+      return;
+    }
   }
 
   return (
@@ -59,12 +106,30 @@ const ModalContainer = ({ modal, setModal, emotion }) => {
               emotions[emotion].map((pos, idx) => (
                 <Pressable
                   key={idx}
+                  style={({pressed}) => [{ opacity: pressed ? .3 : 1 }]}
+                  onPress={() => {
+                    setEmotionStyle({
+                      ...emotionStyle,
+                      emotion: idx
+                    })
+                    setEmotionState({
+                      ...emotionState,
+                      emotions: emotions[emotion][idx]
+                    })
+                  }}
                 >
                   <ImageBackground
                     source={emotion === 1 ? require(`${RED}`): require(`${BLUE}`)}
                     style={{ width: 40, height: 40, justifyContent: 'center', alignItems: 'center' }}
                   >
-                    <Text style={styles.emotionText}>{pos}</Text>
+                    <Text 
+                      style={
+                        [styles.emotionText,
+                          emotionStyle.emotion === idx && styles.checkedTextStyle
+                        ]
+                      }>
+                        {pos}
+                    </Text>
                   </ImageBackground>
                 </Pressable>
               ))
@@ -101,10 +166,23 @@ const ModalContainer = ({ modal, setModal, emotion }) => {
                           opacity: pressed ? .3 : 1
                         }
                     ]}
+                    onPress={() => {
+                      setEmotionStyle({
+                        ...emotionStyle,
+                        level: idx
+                      })
+                      setEmotionState({
+                        ...emotionState,
+                        emotion_level: emotionLevel[idx]
+                      })
+                    }}
                   >
                     <Text style={[
                       styles.emotionLevelText,
-                      emotion === 1 ? { color: 'yellow'} : { color: 'red' }
+                      emotion === 1 
+                      ? { color: 'yellow'}
+                      : { color: 'red' },
+                      emotionStyle.level === idx && styles.checkedTextStyle
                     ]}
                     >{emotions}</Text>
                   </Pressable>
@@ -128,11 +206,14 @@ const ModalContainer = ({ modal, setModal, emotion }) => {
               style={styles.input}
               placeholder='오늘 하루는 어땠나요???'
               multiline={true}
+              value={emotionState.contents}
+              textAlignVertical='top'
+              onChangeText={stateChangeHandler('contents')}
               // onPressIn={() => setKeyboard(true)}
               // onSubmitEditing={() => setKeyboard(false)}
               />
           </View>
-          <View style={{ width: '100%'}}>
+          <View style={{ width: '100%' }}>
             <CustomButton 
               title='던지기'
               theme='secondary'
@@ -155,7 +236,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: "white",
+    backgroundColor: "#fffef2",
     borderRadius: 5,
     padding: 20,
     alignItems: "center",
@@ -254,6 +335,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 10,
+    padding: 10
+  },
+  checkedTextStyle: {
+    color: '#fff'
   }
 })
 

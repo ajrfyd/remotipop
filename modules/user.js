@@ -9,6 +9,10 @@ const SIGN_IN = 'user/SIGN_IN';
 const SIGN_IN_SUCCESS = 'user/SIGN_IN_SUCCESS';
 const SIGN_IN_ERROR = 'user/SIGN_IN_ERROR';
 
+const SIGN_UP = 'user/SIGN_UP';
+const SIGN_UP_SUCCESS = 'user/SIGN_UP_SUCCESS';
+const SIGN_UP_ERROR = 'user/SIGN_UP_ERROR';
+
 const SIGN_OUT = 'user/SIGN_OUT';
 
 // const 
@@ -18,7 +22,8 @@ const initialState = {
     loading: false,
     user: null,
     error: null,
-    isSignIn: false,
+    errCode: null,
+    isSign: false
   }
 }
 
@@ -52,11 +57,51 @@ export const signIn = userInfo => async dispatch => {
 
     dispatch({ type: SIGN_IN_SUCCESS, userinfo })
   } catch(e) {
-    dispatch({ type: SIGN_IN_ERROR, error: e })
+    const data = JSON.parse(JSON.stringify(e));
+    const payload = {
+      error: e,
+      errCode: data.status
+    }
+    dispatch({ type: SIGN_IN_ERROR, payload })
   }
 };
 
-export const signUp = async (userInfo) => dispatch => {
+export const signUp = userInfo => async dispatch => {
+  const { email, password, username } = userInfo;
+  if(!email || !password || !username) {
+    return {
+      message: 'invalid'
+    }
+  }
+  dispatch({ type: SIGN_UP });
+  // console.log(userInfo)
+  try {
+    const { data, status } = await axios.post(
+      `${URL}users/signup`,
+      userInfo,
+      {
+        headers: {
+          'ContentType': 'application/json',
+        },
+        withCredentials: true,
+      }
+      )
+      const { email, username } = data;
+      const userinfo = { email, username };
+      const payload = {
+        errCode: status,
+        userinfo
+      }
+    dispatch({ type: SIGN_UP_SUCCESS, payload })  
+  } catch(e) {
+    const data = JSON.parse(JSON.stringify(e));
+    const payload = {
+      error: e,
+      errCode: data.status
+    }
+    // dispatch({ type: SIGN_UP_ERROR, payload: { error: e, errCode: data.status } })
+    dispatch({ type: SIGN_UP_ERROR, payload })
+  }
   
 }
 
@@ -83,8 +128,7 @@ export const signInAgain = token => async dispatch => {
         withCredentials: true
       }
       )
-      if(data.message !== 'get your information completed') {
-        console.log('asdasddaawaas-12459012-5891279057120954')
+      if(data.message !== 'get your information complete!') {
         return;
       }
       
@@ -105,6 +149,7 @@ export const reqChangeInfo = userInfo => async dispatch => {
   }
   try {
     const token = await AsyncStorage.getItem('accessToken');
+    console.log(token)
     const result = await axios.patch(
       `${URL}mypage`,
       user,
@@ -142,7 +187,8 @@ export default userReducer = (state = initialState, action) => {
           loading: true,
           user: null,
           error: null,
-          isSignIn: false
+          errCode: null,
+          isSign: false
         }
       }
     case SIGN_IN_SUCCESS:
@@ -152,7 +198,8 @@ export default userReducer = (state = initialState, action) => {
           loading: false,
           user: action.userinfo,
           error: null,
-          isSignIn: true,
+          errCode: null,
+          isSign: true
         }
       }
     case SIGN_IN_ERROR:
@@ -161,8 +208,9 @@ export default userReducer = (state = initialState, action) => {
         signIn: {
           loading: false,
           user: null,
-          error: action.error,
-          isSignIn: false
+          error: action.payload.error,
+          errCode: action.payload.errCode,
+          isSign: false
         }
       }
     case SIGN_OUT:
@@ -172,7 +220,34 @@ export default userReducer = (state = initialState, action) => {
           loading: false,
           user: null,
           error: null,
-          isSignIn: false
+          errCode: null,
+          isSign: false,
+        }
+      }
+    case SIGN_UP:
+      return {
+        ...state
+      }
+    case SIGN_UP_SUCCESS:
+      return {
+        ...state,
+        signIn: {
+          loading: false,
+          user: action.payload.userinfo,
+          error: null,
+          errCode: action.payload.errCode,
+          isSign: false
+        }
+      }
+    case SIGN_UP_ERROR:
+      return {
+        ...state,
+        signIn: {
+          loading: false,
+          user: null,
+          error: action.payload.error,
+          errCode: action.payload.errCode,
+          isSign: false
         }
       }
     default:

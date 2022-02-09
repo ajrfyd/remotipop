@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { 
-  View, Text, SafeAreaView, ImageBackground, Platform, 
+  View, Text, ImageBackground, Platform, 
   KeyboardAvoidingView, StyleSheet, Keyboard, TouchableWithoutFeedback, Alert, useWindowDimensions
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import MyPageForm from './MyPageForm';
 import MyPageButtonForm from './MyPageButtonForm';
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,7 +20,7 @@ const MypageContainer = () => {
     password: '',
     confirmPassword: ''
   })
-  
+  console.log(user)
   const dimensions = useWindowDimensions();
   const { width, height } = dimensions;
   
@@ -61,12 +62,12 @@ const MypageContainer = () => {
 
 
   return (
-    <TouchableWithoutFeedback
-      onPress={() => Keyboard.dismiss()}
-    >
+    // <TouchableWithoutFeedback
+    //   onPress={() => Keyboard.dismiss()}
+    // >
       <ImageBackground
         source={require('../../assets/background.jpeg')}
-        style={{ height, width }}
+        style={{ height, width, zIndex: -1 }}
       >
         <KeyboardAvoidingView
           style={{ flex: 1 }}
@@ -93,7 +94,7 @@ const MypageContainer = () => {
           </SafeAreaView>
         </KeyboardAvoidingView>
       </ImageBackground>
-    </TouchableWithoutFeedback>
+    // {/* </TouchableWithoutFeedback> */}
   )
 }
 

@@ -1,49 +1,96 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { 
   View, StyleSheet, Text, Keyboard, 
-  Platform, KeyboardAvoidingView, SafeAreaView, Alert
+  Platform, KeyboardAvoidingView, Alert
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
-import { signIn } from '../../modules/user';
+import { signIn, signUp } from '../../modules/user';
 import SignButtons from './SignButtons';
 import SignForm from './SignForm';
-import { signInF, signUp } from '../../lib/auth';
+// import { signInF, signUp } from '../../lib/auth';
 import axios from 'axios';
+import { validEmail, validPass } from '../../utils/sign';
 
 const SignInScreen = ({ width, navigation, route }) => {
   const [form, setForm] = useState({
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    username: ''
   })
-
+  const dispatch = useDispatch();
+  
   const [loading, setLoading] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
-  // const user = useSelector(state => state.user.signIn);
-  const dispatch = useDispatch();
-
+  const { errCode } = useSelector(state => state.user.signIn);
+  const [code, setCode] = useState(0);
+  if(code === 201) {
+    Alert.alert('알림', '성공적으로 가입되었습니다. 로그인 해 주세요')
+  }
   const onChangeTextHandler = name => value => {
     setForm({
       ...form,
       [name]: value
     })
   }
-
-  const onSubmit = async() => {
+  
+  const onSubmit = async () => {
     Keyboard.dismiss();
-    if(isSignUp) {
+    const { email, password, confirmPassword, username } = form;
 
-    } else {
-      const { email, password, confirmPassword } = form;
-      if(isSignUp && password !== confirmPassword) {
-        Alert.alert('비밀번호가 일치하지 않습니다!')
+    if(
+      isSignUp ?
+      !email || !password || !confirmPassword :
+      !email || !password
+      ) {
+      Alert.alert('알림', '모든 입력은 필수입니다.')
+      return;
+    }
+
+    if(!validEmail(email)) {
+      Alert.alert('알림', '잘못된 형식의 이메일 주소 입니다')
+      return;
+    }
+
+
+    if(isSignUp) {
+      if(password !== confirmPassword) {
+        Alert.alert('알림', '비밀번호를 확인해 주세요')
         return;
       }
-  
+      if(!validPass(password)) {
+        Alert.alert('알림', '비밀번호는 영문,숫자,특수문자($@^!%*#?&)를 모두 포함하여 8자 이상 입력해야합니다')
+        return;
+      }
+      const info = {
+          email,
+          password,
+          username
+        }
+      dispatch(signUp(info))
+      if(errCode === 409) {
+        Alert.alert('알림', '이미 존재하는 메일 입니다!')
+        return;
+      }
+      if(errCode === 201) {
+        setCode(errCode)
+        // Alert.alert('알림', '성공적으로 가입되었습니다. 로그인 해 주세요!')
+        return;
+      }
+    } else {
       const info = { email, password };
       setLoading(true);
-      dispatch(signIn(info))
-      setLoading(false)
+      try{
+        dispatch(signIn(info))
+        setLoading(false)
+      } catch(e) {
+        setLoading(false)
+      }
+      if(errCode === 401) {
+        Alert.alert('알림', '비밀번호 혹은 이메일을 확인해 주세요')
+        return
+      }
     }
   }
 
@@ -69,6 +116,7 @@ const SignInScreen = ({ width, navigation, route }) => {
             loading={loading}
             setIsSignUp={setIsSignUp}
             setForm={setForm}
+            // blurOnSubmit={false}
           />
         </View>
       </SafeAreaView>
