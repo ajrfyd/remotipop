@@ -20,7 +20,7 @@ const MypageContainer = () => {
     password: '',
     confirmPassword: ''
   })
-  console.log(user)
+  
   const dimensions = useWindowDimensions();
   const { width, height } = dimensions;
   

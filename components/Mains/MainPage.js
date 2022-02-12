@@ -86,6 +86,7 @@ const MainPage = ({ navigation }) => {
             modal={modal}
             setModal={setModal}
             emotion={emotion}
+            navigation={navigation}
           /> 
         : null
       }

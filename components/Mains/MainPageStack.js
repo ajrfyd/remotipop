@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainPage from './MainPage';
 // import Test from './Test';
 import Modal from './ModalContainer';
+import ThrowAni from './ThrowAni';
 
 const MainPageStack = () => {
   const Stack = createNativeStackNavigator();
@@ -20,6 +21,10 @@ const MainPageStack = () => {
           <Stack.Screen 
             name='Main'
             component={MainPage}
+          />
+          <Stack.Screen 
+            name='Throw'
+            component={ThrowAni}
           />
         </Stack.Navigator>
   )

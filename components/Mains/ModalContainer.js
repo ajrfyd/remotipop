@@ -8,7 +8,7 @@ import CustomButton from '../SignIn/CustomButton';
 import { useDispatch } from 'react-redux'
 import { registerBean } from '../../modules/beans';
 
-const ModalContainer = ({ modal, setModal, emotion }) => {
+const ModalContainer = ({ modal, setModal, emotion, navigation }) => {
   const dispatch = useDispatch();
   const emotions = [
     ['슬픔', '우울', '걱정', '분노', '실망'],
@@ -28,7 +28,6 @@ const ModalContainer = ({ modal, setModal, emotion }) => {
     emotion: 0,
     level: 0
   })
-
   const emotionLevel = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   // const [keyboard, setKeyboard] = useState(false);
   // modal size 
@@ -62,6 +61,9 @@ const ModalContainer = ({ modal, setModal, emotion }) => {
             text: '전송', 
             onPress: () => {
               dispatch(registerBean(emotionState))
+              setModal(modal => !modal)
+              navigation.navigate('Throw', 
+              { params : emotionState.gourdkinds })
             },
             style: 'default'
           }

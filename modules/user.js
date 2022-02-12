@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 // Action type
 
 // const URL = 'http://ec2-13-209-98-187.ap-northeast-2.compute.amazonaws.com:8080/'
-const URL = 'http://10.0.2.2:3000/'
+const URL = 'http://10.0.2.2:3001/'
 
 const SIGN_IN = 'user/SIGN_IN';
 const SIGN_IN_SUCCESS = 'user/SIGN_IN_SUCCESS';
@@ -41,7 +41,7 @@ export const signIn = userInfo => async dispatch => {
         withCredentials: true
       }
       )
-
+      // console.log(data,'@@@@@@@@@@@@@@@@@@@@@@@@@@@@s')
       const result = data.userinfo;
       const accessToken = result.accessToken;
       const { username, email } = result;
@@ -57,6 +57,7 @@ export const signIn = userInfo => async dispatch => {
 
     dispatch({ type: SIGN_IN_SUCCESS, userinfo })
   } catch(e) {
+    // console.log(e,'1231241241241241212412412412')
     const data = JSON.parse(JSON.stringify(e));
     const payload = {
       error: e,
