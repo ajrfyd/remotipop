@@ -1,36 +1,23 @@
-import React from 'react';
-import { View, Text, KeyboardAvoidingView, 
-  SafeAreaView, ImageBackground, Pressable 
+import React, { useState ,useEffect } from 'react';
+import { View, KeyboardAvoidingView, Text,
+  SafeAreaView, ImageBackground, Pressable ,
+  Dimensions, StyleSheet,
 } from 'react-native';
-import axios from 'axios';
-import { signUp } from '../../lib/auth';
-import AsyncStorage from '@react-native-community/async-storage';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBeans } from '../../modules/beans';
-
-const URL = 'http://10.0.2.2:3000/'
+import { getChartData } from '../../modules/chart';
+import { PieChart } from 'react-native-svg-charts'
+import { makeChartData } from '../../utils/chart';
+import ChartTest from './ChartTest';
 
 const ChartPage = () => {
-  // const dispatch = useDispatch();
-  // const data = useSelector(state => state.beans.beans)
-  // console.log(data, '@@@@@@@@@@@@@@@@@@@@@@')
-  const onPress = async () => {
-    // const token = await AsyncStorage.getItem('accessToken');
-    // // const res = await axios.get(`${URL}beans/10`);
-    // const data = await axios.get(
-    //   `${URL}calendar/2022-02-10`,
-    //   {
-    //     headers: {
-    //       authorization: `Bearer ${token}`,
-    //       ContentType: 'application/json'
-    //     },
-    //     withCredentials: true
-    //   }
-    //   )
-    // console.log(data.data.data)
-    // dispatch(getBeans('2022-02-10'))
-  }
+  const dispatch = useDispatch();
+  const { data } = useSelector(state => state.chart);
 
+  useEffect(() => {
+    dispatch(getChartData())
+  }, [dispatch])
+
+  const emotions = makeChartData(data)
 
   return (
     <ImageBackground
@@ -45,19 +32,43 @@ const ChartPage = () => {
         }}
       >
         <SafeAreaView
-          style={{ flex: 1 }}
+          style={{ flex: 1}}
         >
-          <Pressable
-            onPress={onPress}
-          >
-            <Text>
-              Click
+          <View style={styles.header}>
+            <Text style={styles.headText}>
+              나의 감정 통계
             </Text>
-          </Pressable>
+          </View>
+          <View style={styles.chartContainer}>
+            <PieChart
+              style={{ height: 200, flex: 1 }}
+              outerRadius={'70%'}
+              innerRadius={10}
+              data={emotions}
+              showGrid='false'
+              numberOfTicks={30}
+            />
+          </View>
+          {/* <ChartTest /> */}
         </SafeAreaView>
       </KeyboardAvoidingView>
     </ImageBackground>
   )
 }
 
+const styles = StyleSheet.create({
+  header: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 50
+  },
+  headText: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#6200ee'
+  },
+  chartContainer: {
+    flex: 1
+  }
+})
 export default ChartPage;
