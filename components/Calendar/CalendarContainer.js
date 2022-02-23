@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Alert } from 'react-native';
 import { Calendar, CalendarList } from 'react-native-calendars';
 import Icons from 'react-native-vector-icons/MaterialIcons'
@@ -27,18 +27,29 @@ LocaleConfig.locales['fr'] = {
 LocaleConfig.defaultLocale = 'fr';
 
 const CalendarContainer = ({ getDay }) => {
-  const marked = {
-    '2022-02-09': {
-        marked: true,
-        selected: true
-    }
+  const [markedDay, setMarkedDay] = useState(null);
+  const markingFunc = (day) => {
+    setMarkedDay({
+      [day.dateString]: {
+        selected: true,
+        marked: false
+      }
+    })
   }
+  // const marked = {
+  //   '2022-02-09': {
+  //       marked: true,
+  //       selected: true
+  //   }
+  // }
   return (
     <CalendarList 
       // style={styles.calendar}
-      // markedDates={marked}
+      markedDates={markedDay}
       // calendarWidth={500}
       onDayPress={day => {
+        markingFunc(day)
+        console.log(day,'111111111111111111')
         getDay(day.dateString)
       }}
       // onDayLongPress={day => {

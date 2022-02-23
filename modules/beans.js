@@ -33,7 +33,7 @@ export const registerBean = bean => async dispatch => {
       const payload = {
         data, status
       }
-      // console.log(data, status)
+      console.log(data, status, 'thisthisthisthisthisthisthisthisthist')
       dispatch({ type: REQ_REGISTER_BEAN_SUCCESS, payload })
   } catch(e) {
     const data = JSON.parse(JSON.stringify(e));
@@ -85,7 +85,8 @@ const initialState = {
   bean: {
     code: null,
     error: null,
-    loading: false
+    loading: false,
+    beans: null
   }
 }
 
@@ -98,6 +99,7 @@ const beansReducer = (state = initialState, action) => {
           code: null,
           error: null,
           loading: true,
+          beans: null
         }
       }
     case REQ_REGISTER_BEAN_SUCCESS:
@@ -107,6 +109,7 @@ const beansReducer = (state = initialState, action) => {
           code: action.payload.status,
           error: null,
           loading: false,
+          beans: action.payload.data,
         }
       }
     case REQ_REGISTER_BEAN_ERROR:
@@ -115,7 +118,8 @@ const beansReducer = (state = initialState, action) => {
         bean: {
           code: null,
           error: null,
-          loading: false
+          loading: false,
+          beans: null,
         }
       }
     case GET_BEANS:
@@ -125,7 +129,13 @@ const beansReducer = (state = initialState, action) => {
     case GET_BEANS_SUCCESS:
       return {
         ...state,
-        beans: action.payload
+        beans: action.payload,
+        bean: {
+          code: null,
+          error: null,
+          loading: false,
+          beans: action.payload,
+        }
       }
     case GET_BEANS_ERROR:
       return {

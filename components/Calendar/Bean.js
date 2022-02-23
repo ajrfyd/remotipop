@@ -5,7 +5,6 @@ import { View, StyleSheet, Text, Modal,
 
 const Bean = ({ beanModal, setBeanModal, setData, data }) => {
   const { emotions, contents, emotion_level } = data;
-  console.log(data, '@@@@@@@@@@@@@@')
   return (
     <View style={styles.container} >
       <Modal

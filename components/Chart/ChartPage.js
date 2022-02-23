@@ -11,12 +11,12 @@ import ChartTest from './ChartTest';
 
 const ChartPage = () => {
   const dispatch = useDispatch();
-  const { data } = useSelector(state => state.chart);
-
   useEffect(() => {
     dispatch(getChartData())
   }, [dispatch])
-
+  const { data } = useSelector(state => state.chart);
+  // console.log(data, '1k1k1k1k1k1k1k1k1k1k1k1k1k1')
+  
   const emotions = makeChartData(data)
 
   return (
@@ -47,6 +47,7 @@ const ChartPage = () => {
               data={emotions}
               showGrid='false'
               numberOfTicks={30}
+              // labelRadius={30}
             />
           </View>
           {/* <ChartTest /> */}

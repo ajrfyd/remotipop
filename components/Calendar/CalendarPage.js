@@ -11,7 +11,10 @@ import Bean from './Bean';
 
 const CalendarPage = () => {
   const dispatch = useDispatch();
-  const beansData = useSelector(state => state.beans.beans)
+  const beansData = useSelector(state => state.beans.bean.beans)
+  // const beansData2 = useSelector(state => state.beans.bean)
+  // const beanData = useSelector(state => state.beans.bean.beans)
+  // console.log(beanData, 'TimeLepssoust!!!!!!!')
   const [day, setDay] = useState(format(new Date(), 'yyyy-MM-dd'))
   const [beanModal, setBeanModal] = useState(false)
   const [data, setData] = useState(null)
@@ -21,6 +24,7 @@ const CalendarPage = () => {
   }, [day])
 
   useEffect(() => {
+    // console.log(day, 'qqqqqwqeqweqweqweqweqweqweqweqw')
     dispatch(getBeans(day))
   }, [dispatch, day])
 

@@ -26,7 +26,7 @@ const TutorialPage = () => {
         <ScrollView 
           pagingEnabled
           horizontal
-          showsHorizontalScrollIndicator={true}
+          showsHorizontalScrollIndicator={false}
         >
           <TutorialPage1 width={width}/>
           <TutorialPage2 width={width}/>

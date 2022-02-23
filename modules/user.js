@@ -57,7 +57,6 @@ export const signIn = userInfo => async dispatch => {
 
     dispatch({ type: SIGN_IN_SUCCESS, userinfo })
   } catch(e) {
-    // console.log(e,'1231241241241241212412412412')
     const data = JSON.parse(JSON.stringify(e));
     const payload = {
       error: e,

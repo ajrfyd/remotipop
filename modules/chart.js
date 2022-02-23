@@ -30,11 +30,12 @@ export const getChartData = () => async dispatch => {
       withCredentials: true
     })
     // console.log(data, '34233663324324532460329085734980573249085732490')
-    // const { emotion, month } = data;
-    // const payload = {
-    //   emotion, month
-    // }
+    const { emotion, month } = data;
+    const payload = {
+      emotion, month
+    }
 
+    // console.log(payload, 'paapapayppaypaypapypapypaypapyappaypap')
 
     dispatch({ type: REQ_CHART_DATA_SUCCESS, payload: data.emotion })
   } catch(e) {
@@ -51,6 +52,7 @@ export default function chartReducer(state = initialState, action) {
 
       }
     case REQ_CHART_DATA_SUCCESS:
+      console.log(action.payload, '1298089510518975102895125-521-35-12-5-1235-213-51-25-')
       return {
         ...state,
         data: action.payload

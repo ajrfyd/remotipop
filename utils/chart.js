@@ -2,13 +2,16 @@ export const makeChartData = (data) => {
   let emotions = [];
   const color = ['red', 'orange', 'yellow', 'green', 'dodgerblue','#041F7D', 'purple', 'pink', '#ddd', '#00ff37'];
   const randomColor = () => ('#' + (Math.random() * 0xFFFFFF << 0).toString(16) + '000000').slice(0, 7)
+  // console.log(randomColor(), 'cococococococococococcocococo')
+
+  console.log(data, 'datadadadadtatdtadtadtatdtadtadtadtadtadt')
   let id = 0;
   for(let key in data) {
     // if(higher < data[key]) higher = data[key];
     const item = {
       key: id++,
       value: data[key],
-      svg: { fill: `${color[id]}` },
+      svg: { fill: `${randomColor()}` },
       arc: null,
       // isHigh: false
       emotion: key

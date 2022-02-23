@@ -29,7 +29,8 @@ const MypageContainer = () => {
   const signOutHandler = () => {
     dispatch(signOut())
   }
-  console.log(user)
+
+  
   const onSubmit = () => {
     Keyboard.dismiss();
 
