@@ -11,7 +11,9 @@ import SignForm from './SignForm';
 // import { signInF, signUp } from '../../lib/auth';
 import axios from 'axios';
 import { validEmail, validPass } from '../../utils/sign';
+import ErrorModal from './ErrorModal';
 
+// 회원가입 로그인 스크린 페이지 
 const SignInScreen = ({ width, navigation, route }) => {
   const [form, setForm] = useState({
     email: '',
@@ -24,17 +26,18 @@ const SignInScreen = ({ width, navigation, route }) => {
   const [loading, setLoading] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const { errCode } = useSelector(state => state.user.signIn);
-  const [code, setCode] = useState(0);
-  if(code === 201) {
-    Alert.alert('알림', '성공적으로 가입되었습니다. 로그인 해 주세요')
-  }
+  const [code, setCode] = useState(null);
+  // if(errCode) {
+  //   console.log(errCode,'qweqweqweqweqw')
+  //   // setCode(errCode)
+  // }
+  // console.log(code, 'qweqweqweqweqweqw')
   const onChangeTextHandler = name => value => {
     setForm({
       ...form,
       [name]: value
     })
   }
-  
   const onSubmit = async () => {
     Keyboard.dismiss();
     const { email, password, confirmPassword, username } = form;
@@ -70,11 +73,12 @@ const SignInScreen = ({ width, navigation, route }) => {
         }
       dispatch(signUp(info))
       if(errCode === 409) {
-        Alert.alert('알림', '이미 존재하는 메일 입니다!')
+        // Alert.alert('알림', '이미 존재하는 메일 입니다!')
+        // setCode(409)
         return;
       }
       if(errCode === 201) {
-        setCode(errCode)
+        // setCode(errCode)
         // Alert.alert('알림', '성공적으로 가입되었습니다. 로그인 해 주세요!')
         return;
       }
@@ -101,7 +105,32 @@ const SignInScreen = ({ width, navigation, route }) => {
       behavior={Platform.select({ ios: 'padding' })}
     >
       <SafeAreaView style={[styles.container, { flex: 1 }]}>
-        <Text style={styles.text}>{isSignUp ? 'SignUp' : 'SignIn'}</Text>
+        {
+          errCode ? <ErrorModal errCode={errCode} setIsSignUp={setIsSignUp}/>: (
+            
+              <>
+                <Text style={styles.text}>{isSignUp ? 'SignUp' : 'SignIn'}</Text>
+                <View style={styles.form}>
+                  <SignForm 
+                    form={form}
+                    onChangeTextHandler={onChangeTextHandler}
+                    onSubmit={onSubmit}
+                    isSignUp={isSignUp}
+                    blurOnSubmit={false}
+                  />
+                  <SignButtons 
+                    onSubmit={onSubmit}
+                    isSignUp={isSignUp}
+                    loading={loading}
+                    setIsSignUp={setIsSignUp}
+                    setForm={setForm}
+                    // blurOnSubmit={false}
+                  />
+                </View>
+              </>
+          )
+        }
+        {/* <Text style={styles.text}>{isSignUp ? 'SignUp' : 'SignIn'}</Text>
         <View style={styles.form}>
           <SignForm 
             form={form}
@@ -118,7 +147,8 @@ const SignInScreen = ({ width, navigation, route }) => {
             setForm={setForm}
             // blurOnSubmit={false}
           />
-        </View>
+        </View> */}
+        {/* <ErrorModal setCode={setCode}/> */}
       </SafeAreaView>
     </KeyboardAvoidingView>
   )

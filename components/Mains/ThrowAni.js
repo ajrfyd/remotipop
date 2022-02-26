@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+// 감정 게시글 작성 후 나오는 애니메이션 페이지
 const ThrowAni = ({ navigation, route }) => {
   // const URL = route.params ?
   //   '../../assets/positiveThrow.gif' :

@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 const Stack = createNativeStackNavigator();
 
-
+// 튜토리얼 페이지 스택 && 애니메이션 작동
 const TutorialStack = () => {
   const [animation, setAnimation] = useState(true);
   const [token, setToken] = useState(null);

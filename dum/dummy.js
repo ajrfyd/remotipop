@@ -1,3 +1,5 @@
+// 메인페이지 소녀 소개 멘트 더미 데이타
+
 export const explain = [
   '저를 터치해 보실래요??👅',
   '위의 박을 눌러 그날의 감정을 기록할 수 \n있어요..',
@@ -11,9 +13,4 @@ export const controller = (num) => {
     return 0;
   }
   return num;
-}
-
-export const userInfo = {
-  username: 'ajrfyd',
-  email: 'ajrfyd@naver.com',
 }

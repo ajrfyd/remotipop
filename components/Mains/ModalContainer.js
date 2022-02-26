@@ -8,6 +8,7 @@ import CustomButton from '../SignIn/CustomButton';
 import { useDispatch } from 'react-redux'
 import { registerBean } from '../../modules/beans';
 
+// 감정에 대한 게시글 작성 페이지
 const ModalContainer = ({ modal, setModal, emotion, navigation }) => {
   const dispatch = useDispatch();
   const emotions = [

@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const Tab = createBottomTabNavigator();
 
+// 로그인 후 메인 탭네비게이션
 const MainTab = () => {
   return (
     <Tab.Navigator

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Keyboard, TouchableWithoutFeedback } from 'react-native';
 
+// 키보드의 뷰에 가리지 않도록 
+// 작동 안함
+// 연구가 필요
 
 const KeyboardDismissComponent = ({ children }) => {
   return (

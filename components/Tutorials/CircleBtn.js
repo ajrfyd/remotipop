@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
+//! 미완성 
 const CircleBtn = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();

@@ -10,7 +10,7 @@ import TutorialPage3 from './TutorialPage3';
 import TutorialPage4 from './TutorialPage4';
 import SignInScreen from '../SignIn/SignInScreen';
 
-
+// 튜토리얼 첫 페이지 
 const TutorialPage = () => {
   const { width } = useWindowDimensions();
   // const { pages } = useSelector(state => state.btnPage);

@@ -3,8 +3,10 @@ import { View, StyleSheet, Text, Modal,
   KeyboardAvoidingView, Pressable, TextInput
 } from 'react-native';
 
+// 개별 게시글 파일
 const Bean = ({ beanModal, setBeanModal, setData, data }) => {
   const { emotions, contents, emotion_level } = data;
+  
   return (
     <View style={styles.container} >
       <Modal

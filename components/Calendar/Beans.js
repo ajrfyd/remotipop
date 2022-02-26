@@ -3,11 +3,11 @@ import { View, Text, StyleSheet, Pressable } from 'react-native';
 import Bean from './Bean';
 import Level from './Level';
 
+// Flat List 안의 개별 게시글의 틀
 const Beans = ({ data, beanModal, setBeanModal, setData }) => {
   const { contents, createdAt, gourdKinds, emotion_level, emotions } = data;
-  // console.log(data, '1 2 3 4 5 6 7 8 9 10 11 12 13 ')
-  // console.log(new Date(createdAt).toTimeString().split(' ')[0])
-  const date = new Date(createdAt).toTimeString().split(' ')[0]
+  const date = new Date(createdAt).toTimeString().split(' ')[0];
+
   return (
     <Pressable
       style={styles.container}

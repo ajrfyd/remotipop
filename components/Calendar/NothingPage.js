@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
+// 없는 데이터 표시 컴포넌트
 const NothingPage = ({data}) => {
   console.log(data)
   return (

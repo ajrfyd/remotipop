@@ -6,6 +6,7 @@ import {
 import { explain, controller } from '../../dum/dummy';
 import ModalContainer from './ModalContainer';
 
+// 로그인 후 나오는 메인 페이지
 const MainPage = ({ navigation }) => {
   const [num, setNum] = useState(0);
   const [modal, setModal] = useState(false);

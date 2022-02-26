@@ -226,7 +226,14 @@ export default userReducer = (state = initialState, action) => {
       }
     case SIGN_UP:
       return {
-        ...state
+        ...state,
+        signIn: {
+          loading: false,
+          user: null,
+          error: null,
+          errCode: null,
+          isSign: false
+        }
       }
     case SIGN_UP_SUCCESS:
       return {

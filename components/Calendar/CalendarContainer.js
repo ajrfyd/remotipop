@@ -4,6 +4,7 @@ import { Calendar, CalendarList } from 'react-native-calendars';
 import Icons from 'react-native-vector-icons/MaterialIcons'
 import {LocaleConfig} from 'react-native-calendars';
 
+// 달력 컨테이너 페이지 & 달력 초기화(한글화)
 LocaleConfig.locales['fr'] = {
   monthNames: [
     '1월',
@@ -49,7 +50,6 @@ const CalendarContainer = ({ getDay }) => {
       // calendarWidth={500}
       onDayPress={day => {
         markingFunc(day)
-        console.log(day,'111111111111111111')
         getDay(day.dateString)
       }}
       // onDayLongPress={day => {

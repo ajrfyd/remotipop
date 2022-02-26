@@ -1,6 +1,7 @@
 import React from 'react';
 import { Pressable, StyleSheet, View, Text, Platform } from 'react-native';
 
+// 버튼 커스텀 컴포넌트
 const CustomButton = ({ title, onPress, hasMarginBottom, theme }) => {
   const isPrimary = theme === 'primary';
 

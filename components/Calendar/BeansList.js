@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList, StyleSheet, View, Text } from 'react-native';
 import Beans from './Beans';
 
+// React에서 map활용 반복 component 뿌려주는 것과 같음.
 const BeansList = ({ data, ListHeaderComponent, beanModal, setBeanModal, setData }) => {
   return (
     <FlatList 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
 
+// 이모티팝 애니메이션 페이지
 const AnimationPage = () => {
   return (
     <View style={styles.container}>

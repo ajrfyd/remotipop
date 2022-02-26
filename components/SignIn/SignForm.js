@@ -2,12 +2,13 @@ import React, { useRef } from 'react';
 import { StyleSheet } from 'react-native';
 import InputForm from './InputForm';
 
+
+// 로그인 & 회원가입 분기 양식
 const SignForm = ({ form, onChangeTextHandler, onSubmit, isSignUp }) => {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
   const usernameRef = useRef();
 
-  // console.log(form)
   return (
     <>
       <InputForm

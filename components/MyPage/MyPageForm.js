@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { View, StyleSheet, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import InputForm from '../SignIn/InputForm';
 
+// 마이페이지 인풋 폼
 const MyPageForm = ({ user, onChangeTextHandler }) => {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();

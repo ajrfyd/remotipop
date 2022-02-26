@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 
+// 인풋 커스텀
 const InputForm = ({ hasMarginBottom, ...val }, ref) => {
   return (
     <TextInput 

@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import CustomButton from '../SignIn/CustomButton';
 
+// 마이페이지의 버튼 양식
 const MyPageButtonForm = ({ onPress, onSubmit }) => {
 
   return (

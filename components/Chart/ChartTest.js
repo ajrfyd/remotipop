@@ -1,3 +1,5 @@
+//! 테스트 중입니다
+
 // import React from 'react'
 // import { PieChart } from 'react-native-svg-charts'
 // import { Circle, G, Line } from 'react-native-svg'

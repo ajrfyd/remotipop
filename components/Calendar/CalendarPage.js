@@ -8,7 +8,7 @@ import { format, set } from 'date-fns';
 import NothingPage from './NothingPage';
 import Bean from './Bean';
 
-
+// 달력 페이지 && 게시글 && 모달
 const CalendarPage = () => {
   const dispatch = useDispatch();
   const beansData = useSelector(state => state.beans.bean.beans)

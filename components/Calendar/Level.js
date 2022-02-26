@@ -2,8 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { levelMaker } from '../../utils/level';
 
+// 개별글에 표시되는 레벨 컴포넌트
 const Level = ({ level, gourdKinds }) => {
-  const levelArr = levelMaker(level)
+  // 레벨을 받아 배열로 변경 해 주는 함수
+  const levelArr = levelMaker(level);
 
   return (
     <View style={[ styles.container ]}>

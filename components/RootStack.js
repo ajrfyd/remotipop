@@ -10,6 +10,7 @@ import { signInAgain } from '../modules/user';
 
 const Stack = createNativeStackNavigator()
 
+// 루트 스택 (로그인 분기)
 const RootStack = () => {
   const user = useSelector(user => user.user.signIn);
   const dispatch = useDispatch();

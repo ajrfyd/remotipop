@@ -3,6 +3,7 @@ import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import CustomButton from './CustomButton';
 
+// 버튼 양식
 const SignButtons = ({ isSignUp, onSubmit, loading, setIsSignUp, setForm }) => {
   const navigation = useNavigation();
 

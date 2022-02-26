@@ -9,7 +9,7 @@ import MyPageButtonForm from './MyPageButtonForm';
 import { useSelector, useDispatch } from 'react-redux';
 import { signOut, reqChangeInfo } from '../../modules/user';
 
-
+// 마이페이지 컨테이너 
 const MypageContainer = () => {
   const userInfo = useSelector(state => state.user.signIn.user);
   const { username, email } = userInfo;
@@ -30,7 +30,7 @@ const MypageContainer = () => {
     dispatch(signOut())
   }
 
-  
+
   const onSubmit = () => {
     Keyboard.dismiss();
 
