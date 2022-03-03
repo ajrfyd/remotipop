@@ -33,7 +33,7 @@ export const registerBean = bean => async dispatch => {
       const payload = {
         data, status
       }
-      console.log(data, status, 'thisthisthisthisthisthisthisthisthist')
+      // console.log(data, status, 'thisthisthisthisthisthisthisthisthist')
       dispatch({ type: REQ_REGISTER_BEAN_SUCCESS, payload })
   } catch(e) {
     const data = JSON.parse(JSON.stringify(e));

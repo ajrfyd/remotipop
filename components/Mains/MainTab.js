@@ -29,7 +29,8 @@ const MainTab = () => {
         name="CalendarPage"
         component={CalendarPage}
         options={{
-          tabBarIcon: ({ color }) => <Icon name='calendar-today' size={24} color={color}/>
+          tabBarIcon: ({ color }) => <Icon name='calendar-today' size={24} color={color}/>,
+          unmountOnBlur: true
         }}
       />
       <Tab.Screen 

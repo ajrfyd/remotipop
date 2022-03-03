@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   header: {
-    marginHorizontal: 5,
+    marginHorizontal: 10,
     alignItems: 'center'
   },
   headerText: {
@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   content: {
-    padding: 15
+    padding: 15,
+    marginBottom: -10
   }
 })
 

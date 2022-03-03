@@ -19,6 +19,8 @@ const CalendarPage = () => {
   const [beanModal, setBeanModal] = useState(false)
   const [data, setData] = useState(null)
   
+  const [bean, setBean] = useState(null)
+
   const getDay = useCallback((pressedDay) => {
     setDay(pressedDay)
   }, [day])
@@ -26,8 +28,12 @@ const CalendarPage = () => {
   useEffect(() => {
     // console.log(day, 'qqqqqwqeqweqweqweqweqweqweqweqw')
     dispatch(getBeans(day))
+    if(beansData) {
+      setBean(beansData);
+    }
   }, [dispatch, day])
 
+  console.log(bean, 'BeanBeanBeanBeanBeanBeanBeanBeanBeanBeanBeanBeanBeanBean')
   return (
     <>
       <CalendarContainer 
