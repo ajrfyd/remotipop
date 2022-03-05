@@ -37,7 +37,7 @@ const RootStack = () => {
       screenOptions={{
         headerShown: false
       }}
-    >
+    > 
       {
         user.isSign ? (
           <Stack.Screen 
@@ -53,14 +53,13 @@ const RootStack = () => {
               name='TutorialStack'
               component={TutorialStack}
             />
-            <Stack.Screen 
+            {/* <Stack.Screen 
               name='SignIn'
               component={SignInScreen}
-            />
+            /> */}
           </>
         )
       }
-      
     </Stack.Navigator>
   )
 }

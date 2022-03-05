@@ -1,3 +1,4 @@
+
 # 🎊 EmotiPop(Remotipop)Cancel changes
 ## Logo
 <img src="https://user-images.githubusercontent.com/73332608/144999214-54e4f52f-d861-41b3-bf65-508dbaf3fa5c.png" width="180" height="140">
@@ -19,15 +20,26 @@
 <div>
  <img src="https://user-images.githubusercontent.com/61442171/155122323-e1618ba1-6059-4675-bcca-a86a34627964.gif" width="180" height="320">
  <img src="https://user-images.githubusercontent.com/61442171/153894940-41a21c23-68ba-493b-9ac4-9c3506ccb9a1.gif" width="180" height="320">
+ <img src="https://user-images.githubusercontent.com/61442171/155846148-2778a647-91d1-420a-ae7d-22f81014ee55.gif" width="180" height="320">
+ <img src="https://user-images.githubusercontent.com/61442171/155846203-20aaf18e-57c5-4336-93b4-48e1ef443d72.gif" width="180" height="320">
+ <img src="https://user-images.githubusercontent.com/61442171/155846239-8cab30f8-ad2d-473f-a41d-ced0c64f617b.gif" width="180" height="320">
  <img src="https://user-images.githubusercontent.com/61442171/153895363-35bf8be7-688b-4b17-9e98-e2c85b468c17.gif" width="180" height="320">
- <img src="https://user-images.githubusercontent.com/61442171/153894723-57dbed8b-dd5f-4213-a96f-ae3daddae148.png" width="180" height="320">
+ <img src="https://user-images.githubusercontent.com/61442171/155846266-cbf4e848-2fc7-46e1-8e77-a92e947b84a9.gif" width="180" height="320">
+ <img src="https://user-images.githubusercontent.com/61442171/155846284-f8373d49-ce47-4da5-ba6b-44c3cd210fa0.gif" width="180" height="320">
+ <img src="https://user-images.githubusercontent.com/61442171/155846333-37b7d7f5-7c2d-4454-ad8a-9cb8aa6fc5c8.gif" width="180" height="320">
  <img src="https://user-images.githubusercontent.com/61442171/153894165-fdca9677-9784-4b27-a7bc-f90666aaf82d.png" width="180" height="320">
+ <img src="https://user-images.githubusercontent.com/61442171/155846408-6f1e1c77-3ca6-475c-9e51-7cd43e2a785f.gif" width="180" height="320">
  <img src="https://user-images.githubusercontent.com/61442171/153895529-2dc2846b-ac42-4b68-b83b-d6111827e833.png" width="180" height="320">
+ <img src="https://user-images.githubusercontent.com/61442171/153894723-57dbed8b-dd5f-4213-a96f-ae3daddae148.png" width="180" height="320">
+ <img src="https://user-images.githubusercontent.com/61442171/155846394-fd6acc68-5f94-4d8d-922d-c2b648c43d05.gif" width="180" height="320">
  <img src="https://user-images.githubusercontent.com/61442171/155121250-57769dc0-4b33-41a0-806a-86a92f433442.gif" width="180" height="320">
 </div>
 
 
- 
+
+
+
+
 # 🗞  이 서비스를 기획하게 된 계기는 무엇인가요?
 - React-Native expo를 활용해 프로젝트를 진행 하였는데, React-Native를 활용해 리펙토링해 보고 싶어서 시작하게 되었습니다. 
 >~~웹툰 원작인 드라마 유미의 세포들을 보면, 다음과 같은 장면이 나옵니다.~~
@@ -75,7 +87,9 @@
 # 🔨 Architecture
 
 ## 🔔 Service Flow Chart
-![image](https://user-images.githubusercontent.com/73332608/146293110-3bf744b4-7745-41b1-853f-f3feeb2899f2.png)
+<img width="1158" alt="스크린샷 2022-02-26 오후 11 21 48" src="https://user-images.githubusercontent.com/61442171/155846596-979fd6d3-0703-45e0-9ed4-cd347e893e70.png">
+
+
 
 # ⚙️ 달라진 것들
 - ## 구조
@@ -116,7 +130,7 @@
 - Modal 제작(현재는 내장 컴포넌트 사용중)
 - Alert 제작(현재는 내장 컴포넌트 사용중)
 - 인트로 애니메이션(어플 재접속 하면 인트로 애니메이션 살짝 보이는 부분)
-- Alert창(dispatch 후 에러에 따라 나타나는 얼럿창의 동작이 의도와는 다르게 작동)
+- ~Alert창(dispatch 후 에러에 따라 나타나는 얼럿창의 동작이 의도와는 다르게 작동)~
 - 차트 라벨 생성
 - 다양한 차트 지원(데이터 필터 및 다양화)
 - 튜토리얼 페이지 넘김 버튼

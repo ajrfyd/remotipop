@@ -1,8 +1,14 @@
-import React from 'react';
+import React,{ useEffect } from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
 
 // 이모티팝 애니메이션 페이지
-const AnimationPage = () => {
+const AnimationPage = ({ navigation }) => {
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate('TutorialPage')
+    }, 5200)
+  }, [navigation])
+
   return (
     <View style={styles.container}>
       <ImageBackground 

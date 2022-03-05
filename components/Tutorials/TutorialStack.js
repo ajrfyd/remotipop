@@ -10,66 +10,85 @@ const Stack = createNativeStackNavigator();
 
 // 튜토리얼 페이지 스택 && 애니메이션 작동
 const TutorialStack = () => {
-  const [animation, setAnimation] = useState(true);
+  // const [animation, setAnimation] = useState(true);
   const [token, setToken] = useState(null);
 
-  const timer = () => {
-    setTimeout(() => {
-      setAnimation(false)
-    }, 5200)
-  }
-  const clearTimer = () => {
-    clearInterval(timer);
-    setAnimation(false)
-  }
+  // const timer = () => {
+  //   // setAnimation(true)
+  //   setTimeout(() => {
+  //     setAnimation(false)
+  //   }, 5200)
+  // }
+  // const clearTimer = () => {
+  //   clearInterval(timer);
+  //   setAnimation(false)
+  // }
 
   const hasToken = async () => {
     const tok = await AsyncStorage.getItem('accessToken');
     setToken(tok)
   }
-
   useEffect(() => {
     hasToken();
-    if(token) {
-      return;
-    }
-    
-    timer()
-    return () => clearTimer();
-  }, [animation, timer])
+  }, [token])
+  // useEffect(() => {
+  //   hasToken();
+  //   if(token) {
+  //     clearTimer();      
+  //     return;
+  //   } else {
+  //     timer()
+  //   }
+  //   // return () => clearTimer();
+  // }, [animation, timer])
 
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false
       }}
-    >
-      {
-        animation ? (
-          <Stack.Screen 
-            name='AnimationPage'
-            component={AnimationPage}
-          />
-        ) : (
-          <>
-            <Stack.Screen 
-              name='TutorialPage'
-              component={TutorialPage}
-            />
-            <Stack.Screen 
-              name='SignIn'
-              component={SignInScreen}
-            />
-          </>
-
-        )
-      }
-      {/* <Stack.Screen 
-        name='Tutorial1'
-        component={TutorialPage1}
-      /> */}
+    >{
+      !token && (
+        <Stack.Screen 
+          name='AnimationPage'
+          component={AnimationPage}
+        />    
+      )
+    }
+      
+      <Stack.Screen 
+        name='TutorialPage'
+        component={TutorialPage}
+      />
+      <Stack.Screen 
+        name='SignIn'
+        component={SignInScreen}
+      /> 
     </Stack.Navigator>
   )
 }
 
 export default TutorialStack;
+
+
+
+// {
+//   animation ? (
+//     <Stack.Screen 
+//       name='AnimationPage'
+//       component={AnimationPage}
+//     />
+//   ) : (
+//     <>
+//       <Stack.Screen 
+//         name='TutorialPage'
+//         component={TutorialPage}
+//       />
+//       <Stack.Screen 
+//         name='SignIn'
+//         component={SignInScreen}
+//       />
+//     </>
+
+//   )
+// }
